@@ -1,0 +1,26 @@
+﻿@model MedicalInstitutions.Models.Diseases.DiseaseGroup
+
+@{
+    ViewBag.Title = "Disease group";
+}
+
+<h2>Disease group details</h2>
+
+<div>
+    <h4>Disease group</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,42 @@
+﻿@model MedicalInstitutions.Models.MedicalInstitutions.Laboratories.LaboratoryContract
+
+@{
+    ViewBag.Title = "Laboratory contract";
+}
+
+<h2>Laboratory contract details</h2>
+
+<div>
+    <h4>Laboratory contract</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LaboratoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laboratory.LaboratoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalInstitutionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalInstitution.MedicalInstitutionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractPrice)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

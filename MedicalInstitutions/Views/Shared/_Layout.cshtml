@@ -1,0 +1,175 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8"/>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>@ViewBag.Title – Information system of medical organizations of the city</title>
+    @Styles.Render("~/Content/css")
+    @Scripts.Render("~/bundles/modernizr")
+    
+@using Microsoft.AspNet.Identity
+
+</head>
+<body>
+<nav class="navbar navbar-default"></nav>
+<div class="navbar navbar-inverse navbar-fixed-top">
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            @Html.ActionLink("Medical institutions", "Index", "Home", new {area = ""}, new {@class = "navbar-brand"})
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li>@Html.ActionLink("Home page", "Index", "Home")</li>
+                <li>@Html.ActionLink("About", "About", "Home")</li>
+                @if (Request.IsAuthenticated)
+                {
+                    if (User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                Medical Institutions
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Hospitals", "Index", "Hospitals")</li>
+                                <li>@Html.ActionLink("Hospital buildings", "Index", "HospitalBuildings")</li>
+                                <li>@Html.ActionLink("Hospital departments", "Index", "HospitalDepartments")</li>
+                                <li>@Html.ActionLink("Wards", "Index", "Wards")</li>
+                                <li>@Html.ActionLink("Clinics", "Index", "Clinics")</li>
+                                <li>@Html.ActionLink("Cabinets", "Index", "Cabinets")</li>
+                            </ul>
+                        </li>
+                    }
+                    if (User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                Diseases
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Disease group", "Index", "DiseaseGroups")</li>
+                                <li>@Html.ActionLink("Disease", "Index", "Diseases")</li>
+                            </ul>
+                        </li>
+                    }
+                    if (User.IsInRole("Admin") || User.IsInRole("HR"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                Medial Stuff
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Medical staff", "Index", "MedicalStaffs")</li>
+                                <li>@Html.ActionLink("Medical staff employment", "Index", "MedicalStaffEmployments")</li>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Medical staff profile", "Index", "MedicalStaffProfiles")</li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    if (User.IsInRole("Admin") || User.IsInRole("HR"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                Service Stuff
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Service staffs", "Index", "ServiceStaffs")</li>
+                                <li>@Html.ActionLink("Service staff employment", "Index", "ServiceStaffEmployments")</li>
+
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Service staff specialty", "Index", "ServiceStaffSpecialties")</li>
+                                }
+                            </ul>
+                        </li>
+                    }
+                    if (User.IsInRole("Doctor") || User.IsInRole("Admin"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                Patient
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li>@Html.ActionLink("Patient", "Index", "Patients")</li>
+                                <li>@Html.ActionLink("Operation", "Index", "Operations")</li>
+                                <li>@Html.ActionLink("Hospital visit", "Index", "HospitalVisits")</li>
+                                <li>@Html.ActionLink("Clinic visit", "Index", "ClinicVisits")</li>
+                            </ul>
+                        </li>
+                    }
+                    if (User.IsInRole("Admin") || User.IsInRole("Doctor"))
+                    {
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                                Laboratory
+                                <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                @if (User.IsInRole("Admin"))
+                                {
+                                    <li>@Html.ActionLink("Laboratory", "Index", "Laboratories")</li>
+                                    <li>@Html.ActionLink("Laboratory specialization", "Index", "LaboratorySpecializations")</li>
+                                    <li>@Html.ActionLink("Laboratory contract", "Index", "LaboratoryContracts")</li>
+                                }
+                                <li>@Html.ActionLink("Analysis", "Index", "Analyzes")</li>
+                            </ul>
+                        </li>
+                    }
+
+                    <li class="dropdown">
+                        <a class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="true">
+                            Request
+                            <span class="caret"></span>
+                        </a>
+                        <ul class="dropdown-menu dropdown-menu-right">
+                            <li>@Html.ActionLink("Raw query", "Index", "RawQuery")</li>
+                            <li>@Html.ActionLink("1. Medical staff for profile and medical institution", "Request1", "Requests")</li>
+                            <li>@Html.ActionLink("2. Service staff for specialty and medical institution", "Request2", "Requests")</li>
+                            <li>@Html.ActionLink("3. Surgeons with minimum operations for medical institution", "Request3", "Requests")</li>
+                            <li>@Html.ActionLink("4. Medical staff with minimal work experience for medical institution", "Request4", "Requests")</li>
+                            <li>@Html.ActionLink("5. Medical staff with degree for medical; institution", "Request5", "Requests")</li>
+                            <li>@Html.ActionLink("6. Patients for hospital, department, ward, doctor", "Request6", "Requests")</li>
+                            <li>@Html.ActionLink("7. Patients that was cured in hospital and doctor", "Request7", "Requests")</li>
+                            <li>@Html.ActionLink("8. Patients for doctor profile", "Request8", "Requests")</li>
+                            <li>@Html.ActionLink("9. Number of wards and beds for hospital", "Request9", "Requests")</li>
+                            <li>@Html.ActionLink("10. Number of cabinets and number of visits for clinic", "Request10", "Requests")</li>
+                            <li>@Html.ActionLink("11. Average number of patients per day for doctor", "Request11", "Requests")</li>
+                            <li>@Html.ActionLink("12. Number of patients for clinic doctor", "Request12", "Requests")</li>
+                            <li>@Html.ActionLink("13. Patients with operations in medical institution", "Request13", "Requests")</li>
+                            <li>@Html.ActionLink("14. Laboratory stats for medical institution", "Request14", "Requests")</li>
+                        </ul>
+                    </li>
+
+                }
+            </ul>
+            @Html.Partial("_LoginPartial")
+        </div>
+    </div>
+</div>
+
+<div class="container body-content">
+    @RenderBody()
+    <hr/>
+    <footer>
+        <p>&copy; @DateTime.Now.Year – Medical institutions</p>
+    </footer>
+</div>
+
+@Scripts.Render("~/bundles/jquery")
+@Scripts.Render("~/bundles/bootstrap")
+@RenderSection("scripts", required: false)
+</body>
+</html>

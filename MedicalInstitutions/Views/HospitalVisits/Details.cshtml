@@ -1,0 +1,82 @@
+﻿@model MedicalInstitutions.Models.Patients.Visit.HospitalVisit
+
+@{
+    ViewBag.Title = "Hospital visit";
+}
+
+<h2>Hospital visit details</h2>
+
+<div>
+    <h4>Hospital visit</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Patient.FullName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Disease.DiseaseName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Disease.DiseaseName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.WardId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Ward.WardName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DoctorId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Doctor.MedicalStaffName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitDateFormat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VisitEndDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VisitEndDateFormat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Temperature)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Temperature)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.PatientCondition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.PatientCondition)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

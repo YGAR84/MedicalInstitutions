@@ -1,0 +1,73 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request7ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 7";
+}
+
+<h4>Obtain a list of patients who underwent inpatient treatment in the specified hospital, or from a specific doctor for a certain period of time.</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+
+        @Html.Label("Hospital", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.HospitalId, Model.Hospitals as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Doctor", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MedicalStaffId, Model.MedicalStaffs as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("From", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Begin, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        @Html.Label("To", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("First name")
+        </th>
+        <th>
+            @Html.DisplayName("Second name")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Patients)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.Patients.PageCount < Model.Patients.PageNumber ? 0 : Model.Patients.PageNumber) of @Model.Patients.PageCount
+@Html.PagedListPager(Model.Patients, PageNum =>Url.Action("Request7",
+    new
+    {
+        pageNum = PageNum,
+        hospitalId = Model.HospitalId,
+        begin = Model.Begin?.ToString("yyyy-MM-dd"),
+        end = Model.End?.ToString("yyyy-MM-dd"),
+        medicalStaffId = Model.MedicalStaffId,
+
+    }))

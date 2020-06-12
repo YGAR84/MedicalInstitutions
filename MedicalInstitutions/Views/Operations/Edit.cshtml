@@ -1,0 +1,96 @@
+﻿@model MedicalInstitutions.Models.Patients.Operation
+
+@{
+    ViewBag.Title = "Operation";
+}
+
+<h2>Operation edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Operation</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.MedicalInstitutionVisitId, "Medical institution visit", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("MedicalInstitutionVisitId", null, "---- Select visit ----", htmlAttributes: new { @class = "form-control", @onchange = "FillSurgeons()" })
+                @Html.ValidationMessageFor(model => model.MedicalInstitutionVisitId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OperationName, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OperationName, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OperationName, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.SurgeonId, "Surgeon", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("SurgeonId", null, htmlAttributes: new {@class = "form-control"})
+                @Html.ValidationMessageFor(model => model.SurgeonId, "", new {@class = "text-danger"})
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OperationDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.OperationDate, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.OperationDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.OperationResult, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.OperationResult, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.OperationResult, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        function FillSurgeons() {
+            var medicalItInstitutionVisitId = $('#MedicalInstitutionVisitId').val();
+            $.ajax({
+                url: '/Operations/GetSurgeonList',
+                type: "GET",
+                dataType: "JSON",
+                data: { medicalItInstitutionVisitId: medicalItInstitutionVisitId },
+                success: function (data) {
+                    $("#SurgeonId").empty();
+                    var markup = "";"<option value=" + 0 + ">" + "---- Select surgeon ---" + "</optional>";
+                    for (var i = 0; i < data.length; i++) {
+                        markup += "<option value=" + data[i].Value + ">" + data[i].Text + "</optional>";
+                    }
+                    $("#SurgeonId").append(markup);
+                },
+                error: function (response) {
+                    alert("error : " + response);
+                }
+            });
+        }
+    </script>
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

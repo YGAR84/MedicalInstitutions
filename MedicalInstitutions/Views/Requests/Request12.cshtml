@@ -1,0 +1,68 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request12ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 12";
+}
+
+<h4>Obtain data on the load (the number of patients for whom the doctor is currently the attending physician) for the indicated doctor, or for all doctors of the hospital, or for all doctors of the named profile</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+
+        @Html.Label("Hospital", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.HospitalId, Model.Hospitals as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Doctor", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MedicalStaffId, Model.Doctors as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Profile", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ProfileId, Model.Profiles as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Medical staff name")
+        </th>
+        <th>
+            @Html.DisplayName("Number of patients")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.MedicalStaffProductions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalStaffName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfPatients)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.MedicalStaffProductions.PageCount < Model.MedicalStaffProductions.PageNumber ? 0 : Model.MedicalStaffProductions.PageNumber) of @Model.MedicalStaffProductions.PageCount
+@Html.PagedListPager(Model.MedicalStaffProductions, PageNum =>Url.Action("Request12",
+    new
+    {
+        pageNum = PageNum,
+        hospitalId = Model.HospitalId,
+        medicalStaffId = Model.MedicalStaffId,
+        profileId = Model.ProfileId,
+
+    }))

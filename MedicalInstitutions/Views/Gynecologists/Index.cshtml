@@ -1,0 +1,87 @@
+﻿@model IEnumerable<MedicalInstitutions.Models.Staffs.MedicalStaffs.Surgeons.Gynecologist>
+
+@{
+    ViewBag.Title = "Index";
+}
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.Clinic.MedicalInstitutionName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.HospitalDepartment.Id)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Degree)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.Vacation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.EmploymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SalaryAddition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.VacationAddition)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.SecondName)
+        </th>
+        <th></th>
+    </tr>
+
+@foreach (var item in Model) {
+    <tr>
+        <td>
+            @Html.DisplayFor(modelItem => item.Clinic.MedicalInstitutionName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.HospitalDepartment.Id)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Degree)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Salary)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.Vacation)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.EmploymentDate)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SalaryAddition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.VacationAddition)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.FirstName)
+        </td>
+        <td>
+            @Html.DisplayFor(modelItem => item.SecondName)
+        </td>
+        <td>
+            @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
+            @Html.ActionLink("Details", "Details", new { id=item.Id }) |
+            @Html.ActionLink("Delete", "Delete", new { id=item.Id })
+        </td>
+    </tr>
+}
+
+</table>

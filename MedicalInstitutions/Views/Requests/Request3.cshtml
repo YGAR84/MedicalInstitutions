@@ -1,0 +1,82 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request3ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 3";
+}
+
+<h4>Obtain a list and the total number of doctors of the specified profile who performed the number of operations no less than specified for a particular medical institution, hospital, or clinic, or all medical institutions of the city.</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+        @Html.Label("Medical institution", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MedicalInstitutionId, Model.MedicalInstitutions as SelectList, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Profile", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ProfileId, Model.Profiles as SelectList, htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Minimum number of operations", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(model => model.MinNumOfOperations, new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalStaffs.First().FirstName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalStaffs.First().SecondName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalStaffs.First().ProfileId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.MedicalStaffs.First().Degree)
+        </th>
+        <th>
+            @Html.DisplayName("Number of operations")
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model.MedicalStaffs)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Profile.ProfileName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Degree)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfOperations)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.MedicalStaffs.PageCount < Model.MedicalStaffs.PageNumber ? 0 : Model.MedicalStaffs.PageNumber) of @Model.MedicalStaffs.PageCount
+@Html.PagedListPager(Model.MedicalStaffs, PageNum =>Url.Action("Request3",
+    new {
+        pageNum = PageNum,
+        profileId = Model.ProfileId,
+        medicalInstitutionId = Model.MedicalInstitutionId,
+        minNumOfOperations = Model.MinNumOfOperations,
+    }))

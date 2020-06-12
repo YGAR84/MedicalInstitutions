@@ -1,0 +1,42 @@
+﻿@model MedicalInstitutions.Models.MedicalInstitutions.Clinics.Clinic
+
+@{
+    ViewBag.Title = "Clinic";
+}
+
+<h2>Clinic details</h2>
+
+<div>
+    <h4>Clinic</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalInstitutionName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalInstitutionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Address)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Address)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.HospitalId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Hospital.MedicalInstitutionName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

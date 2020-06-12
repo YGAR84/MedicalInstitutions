@@ -1,0 +1,150 @@
+﻿@model MedicalInstitutions.Models.Patients.Visit.HospitalVisit
+
+@{
+    ViewBag.Title = "Hospital visit";
+}
+
+<h2>Hospital visit create</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Hospital visit</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientId, "Patient", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("PatientId", null, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PatientId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DiseaseId, "Disease", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DiseaseId", null, htmlAttributes: new { @class = "form-control", @onchange = "FillWards()" })
+                @Html.ValidationMessageFor(model => model.DiseaseId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.WardId, "Ward", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("WardId", new SelectList(" "), "----Select ward----", htmlAttributes: new { @class = "form-control", @onchange = "FillDoctors()" })
+                @Html.ValidationMessageFor(model => model.WardId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+        
+        <div class="form-group">
+            @Html.LabelFor(model => model.VisitDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VisitDate, new { htmlAttributes = new { @class = "form-control", @onchange = "FillDoctors()" } })
+                @Html.ValidationMessageFor(model => model.VisitDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.VisitEndDate, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.VisitEndDate, new { htmlAttributes = new { @class = "form-control", @onchange = "FillDoctors()" } })
+                @Html.ValidationMessageFor(model => model.VisitEndDate, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.DoctorId, "Doctor", htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.DropDownList("DoctorId", new SelectList(" "), "---- Select doctor ----", htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.DoctorId, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Temperature, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Temperature, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Temperature, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.PatientCondition, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EnumDropDownListFor(model => model.PatientCondition, htmlAttributes: new { @class = "form-control" })
+                @Html.ValidationMessageFor(model => model.PatientCondition, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Create" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+
+    <script src="~/Scripts/jquery-1.10.2.min.js"></script>
+    <script>
+        function FillDoctors() {
+            var wardId = $('#WardId').val();
+            var diseaseId = $('#DiseaseId').val();
+            var visitDate = $("#VisitDate").val();
+            var visitEndDate = $("#VisitEndDate").val();
+            $.ajax({ 
+                url: '/HospitalVisits/GetDoctorList',
+                type: "GET",
+                dataType: "JSON",
+                data: {
+                    wardId: wardId,
+                    diseaseId: diseaseId,
+                    visitDate: visitDate,
+                    visitEndDate: visitEndDate
+                },
+                success: function (data) {
+                    $("#DoctorId").empty();
+                    var markup = "";
+                    for (var i = 0; i < data.length; i++) {
+                        markup += "<option value=" + data[i].Value + ">" + data[i].Text + "</optional>";
+                    }
+                    $("#DoctorId").append(markup);
+                },
+                error: function (response) {
+                    alert("error : " + response);
+                }
+            });
+        }
+
+        function FillWards() {
+            var diseaseId = $('#DiseaseId').val();
+            $.ajax({
+                url: '/HospitalVisits/GetWardsList',
+                type: "GET",
+                dataType: "JSON",
+                data: { diseaseId: diseaseId },
+                success: function (data) {
+                    $("#WardId").empty();
+                    var markup = "";
+                    for (var i = 0; i < data.length; i++) {
+                        markup += "<option value=" + data[i].Value + ">" + data[i].Text + "</optional>";
+                    }
+                    $("#WardId").append(markup);
+                },
+                error: function (response) {
+                    alert("error : " + response);
+                }
+            });
+        }
+    </script>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}

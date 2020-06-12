@@ -1,0 +1,64 @@
+﻿@model MedicalInstitutions.Models.Staffs.MedicalStaffs.MedicalStaffProfile
+
+@{
+    ViewBag.Title = "Medical staff profile";
+}
+
+<h2>Medical staff profile delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Medical staff profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DiseaseGroup.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiseaseGroup.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSurgeon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSurgeon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryAddition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryAddition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VacationAddition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VacationAddition)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

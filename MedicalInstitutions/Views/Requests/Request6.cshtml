@@ -1,0 +1,87 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request6ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 6";
+}
+
+<h4>Obtain a list of patients of the indicated hospital, department, or a specific room of the specified department, indicating the date of admission, condition, temperature, and the attending physician</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+
+        @Html.Label("Hospital", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.HospitalId, Model.Hospitals as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Hospital department", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.HospitalDepartmentId, Model.HospitalDepartments as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Ward", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.WardId, Model.Wards as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Patient")
+        </th>
+        <th>
+            @Html.DisplayName("Doctor")
+        </th>
+        <th>
+            @Html.DisplayName("Visit date")
+        </th>
+        <th>
+            @Html.DisplayName("Temperature")
+        </th>
+        <th>
+            @Html.DisplayName("Condition")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.HospitalVisits)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Patient.FullName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Doctor.MedicalStaffName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.VisitDateFormat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Temperature)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.PatientCondition)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.HospitalVisits.PageCount < Model.HospitalVisits.PageNumber ? 0 : Model.HospitalVisits.PageNumber) of @Model.HospitalVisits.PageCount
+@Html.PagedListPager(Model.HospitalVisits, PageNum =>Url.Action("Request6",
+    new
+    {
+        pageNum = PageNum,
+        hospitalId = Model.HospitalId,
+        wardId = Model.WardId,
+        hospitalDepartmentId = Model.HospitalDepartmentId,
+
+}))

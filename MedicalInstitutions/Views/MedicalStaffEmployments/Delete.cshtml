@@ -1,0 +1,80 @@
+﻿@model MedicalInstitutions.Models.Staffs.MedicalStaffs.MedicalStaffEmployment
+
+@{
+    ViewBag.Title = "Medical staff employment";
+}
+
+<h2>Medical staff employment delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Medical staff employment</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalInstitutionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalInstitution.MedicalInstitutionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalStaffId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalStaff.MedicalStaffName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmploymentType)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmploymentType)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Salary)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Salary)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.Vacation)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Vacation)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.EmploymentDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.EmploymentDateFormat)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.DischargeDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DischargeDateFormat)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

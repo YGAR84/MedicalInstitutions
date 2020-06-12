@@ -1,0 +1,26 @@
+﻿@model MedicalInstitutions.Models.Staffs.ServiceStaffs.ServiceStaffSpecialty
+
+@{
+    ViewBag.Title = "Service staff specialty";
+}
+
+<h2>Service staff specialty details</h2>
+
+<div>
+    <h4>Service staff specialty</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.SpecialtyName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SpecialtyName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,58 @@
+﻿@using MedicalInstitutions.Models.MedicalInstitutions.Laboratories
+@model MedicalInstitutions.Models.MedicalInstitutions.Laboratories.Laboratory
+
+@{
+    ViewBag.Title = "Laboratory";
+}
+
+<h2>Laboratory edit</h2>
+
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    
+    <div class="form-horizontal">
+        <h4>Laboratory</h4>
+        <hr />
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+        @Html.HiddenFor(model => model.Id)
+
+        <div class="form-group">
+            @Html.LabelFor(model => model.Address, htmlAttributes: new { @class = "control-label col-md-2" })
+            <div class="col-md-10">
+                @Html.EditorFor(model => model.Address, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessageFor(model => model.Address, "", new { @class = "text-danger" })
+            </div>
+        </div>
+
+        <div class="form-group"> 
+        @Html.Label("Laboratory specializations", new { @class = "control-label col-md-2" })
+        @{
+            List<LaboratorySpecialization> laboratorySpecializations = ViewBag.LaboratorySpecializations;
+            foreach (var ls in laboratorySpecializations)
+            {
+                <div class="col-md-10">
+                    <input type="checkbox" name="selectedSpecializations" value="@ls.Id"
+                           @(Model.LaboratorySpecializations.Contains(ls) ? "checked=\"checked\"" : "") />
+                    @ls.Name <br />
+                </div>
+            }
+        }
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Save" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
+<div>
+    @Html.ActionLink("Back to List", "Index")
+</div>
+
+@section Scripts {
+    @Scripts.Render("~/bundles/jqueryval")
+}
