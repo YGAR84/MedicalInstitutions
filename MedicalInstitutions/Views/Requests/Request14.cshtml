@@ -1,0 +1,79 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request14ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 14";
+}
+
+<h4>Obtain data on the development of the laboratory (the average number of examinations per day) for a specified period for a given medical institution or all medical institutions in the city.</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+
+        @Html.Label("Laboratory", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.LaboratoryId, Model.Laboratories as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Medical institution", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MedicalInstitutionId, Model.MedicalInstitutions as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("From", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Begin, new { htmlAttributes = new { @class = "form-control"} })
+        </div>
+
+        @Html.Label("To", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control" }})
+        </div>
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Laboratory")
+        </th>
+        <th>
+            @Html.DisplayName("Medical institution")
+        </th>
+        <th>
+            @Html.DisplayName("Average production per day")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.ProductionDatas)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.LaboratoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalInstitutionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AverageProduction)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.ProductionDatas.PageCount < Model.ProductionDatas.PageNumber ? 0 : Model.ProductionDatas.PageNumber) of @Model.ProductionDatas.PageCount
+@Html.PagedListPager(Model.ProductionDatas, PageNum =>Url.Action("Request14",
+    new
+    {
+        pageNum = PageNum,
+        laboratoryId = Model.LaboratoryId,
+        medicalInstitutionId = Model.MedicalInstitutionId,
+        begin = Model.Begin?.ToString("yyyy-MM-dd"),
+        end = Model.End?.ToString("yyyy-MM-dd"),
+
+    }))

@@ -1,0 +1,71 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request10ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 10";
+}
+
+<h4>Get the total number of rooms of the specified clinic, the number of visits to each room for a certain period.</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+
+        @Html.Label("Clinic", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ClinicId, Model.Clinics as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("From", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Begin, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        @Html.Label("To", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+
+<div class="col-md-10">
+    @Html.Label("Number of cabinets in clinic:")
+    @Html.DisplayFor(modelItem => modelItem.NumberOfCabinets, new { @class = "control-label col-md-2" })
+</div>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Cabinet")
+        </th>
+        <th>
+            @Html.DisplayName("Number of visits")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.CabinetStats)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.CabinetName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.NumOfVisits)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.CabinetStats.PageCount < Model.CabinetStats.PageNumber ? 0 : Model.CabinetStats.PageNumber) of @Model.CabinetStats.PageCount
+@Html.PagedListPager(Model.CabinetStats, PageNum =>Url.Action("Request10",
+    new
+    {
+        pagenum = PageNum,
+        clinicId = Model.ClinicId,
+        begin = Model.Begin?.ToString("yyyy-MM-dd"),
+        end = Model.End?.ToString("yyyy-MM-dd"),
+    }))

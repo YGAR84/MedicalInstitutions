@@ -1,0 +1,48 @@
+﻿@model MedicalInstitutions.Models.MedicalInstitutions.Laboratories.LaboratoryContract
+
+@{
+    ViewBag.Title = "Laboratory contract";
+}
+
+<h2>Laboratory contract delete</h2>
+
+<h3>Are you sure you want to delete this?</h3>
+<div>
+    <h4>Laboratory contract</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.LaboratoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laboratory.LaboratoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalInstitutionId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalInstitution.MedicalInstitutionName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.ContractPrice)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ContractPrice)
+        </dd>
+
+    </dl>
+
+    @using (Html.BeginForm()) {
+        @Html.AntiForgeryToken()
+
+        <div class="form-actions no-color">
+            <input type="submit" value="Delete" class="btn btn-default" /> |
+            @Html.ActionLink("Back to List", "Index")
+        </div>
+    }
+</div>

@@ -1,0 +1,49 @@
+﻿@model MedicalInstitutions.Models.MedicalInstitutions.Laboratories.Analysis
+
+@{
+    ViewBag.Title = "Analysis";
+}
+
+<h2>Analysis details</h2>
+
+<div>
+    <h4>Analysis</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.AnalysisName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnalysisName)
+        </dd>
+        <dt>
+            @Html.DisplayNameFor(model => model.LaboratoryId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Laboratory.LaboratoryName)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.MedicalInstitutionVisitId)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.MedicalInstitutionVisit.MedicalInstitutionVisitName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.AnalysisDate)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.AnalysisDateFormat)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

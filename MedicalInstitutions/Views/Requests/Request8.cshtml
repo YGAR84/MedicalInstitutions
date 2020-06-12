@@ -1,0 +1,62 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request8ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 8";
+}
+
+<h4>Obtain a list of patients seen by a doctor of the specified profile in a particular clinic.</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+
+        @Html.Label("Clinic", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ClinicId, Model.Clinics as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Profile", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ProfileId, Model.Profiles as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("First name")
+        </th>
+        <th>
+            @Html.DisplayName("Second name")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.Patients)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.FirstName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.SecondName)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.Patients.PageCount < Model.Patients.PageNumber ? 0 : Model.Patients.PageNumber) of @Model.Patients.PageCount
+@Html.PagedListPager(Model.Patients, PageNum =>Url.Action("Request8",
+    new
+    {
+        pageNum = PageNum,
+        clinicId = Model.ClinicId,
+        profileId = Model.ProfileId,
+
+    }))

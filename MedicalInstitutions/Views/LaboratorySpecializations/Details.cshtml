@@ -1,0 +1,26 @@
+﻿@model MedicalInstitutions.Models.MedicalInstitutions.Laboratories.LaboratorySpecialization
+
+@{
+    ViewBag.Title = "Laboratory specialization";
+}
+
+<h2>Laboratory specialization details</h2>
+
+<div>
+    <h4>Laboratory specialization</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.Name)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

@@ -1,0 +1,50 @@
+﻿@model PagedList.IPagedList<MedicalInstitutions.Models.MedicalInstitutions.Laboratories.LaboratoryContract>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Laboratory contract";
+}
+
+<h2>Laboratory contracts</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().LaboratoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MedicalInstitutionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ContractPrice)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Laboratory.LaboratoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalInstitution.MedicalInstitutionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.ContractPrice)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, PageNum =>Url.Action("Index",
+    new { PageNum }))

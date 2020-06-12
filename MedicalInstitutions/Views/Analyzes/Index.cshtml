@@ -1,0 +1,56 @@
+﻿@model PagedList.IPagedList<MedicalInstitutions.Models.MedicalInstitutions.Laboratories.Analysis>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Analysis";
+}
+
+<h2>Analyzes</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().AnalysisName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().LaboratoryId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MedicalInstitutionVisitId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().AnalysisDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnalysisName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Laboratory.LaboratoryName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalInstitutionVisit.MedicalInstitutionVisitName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AnalysisDateFormat)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, PageNum =>Url.Action("Index",
+    new { PageNum }))

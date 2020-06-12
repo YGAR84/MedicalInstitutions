@@ -1,0 +1,80 @@
+﻿@model MedicalInstitutions.Controllers.RequestsController.Request11ViewModel
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Request 11";
+}
+
+<h4>Obtain data on production (average number of patients admitted per day) for a specified period for a specific doctor, or for all doctors of a clinic, or for all doctors of a named profile</h4>
+
+
+<form method="get">
+    <div class="form-inline">
+
+        @Html.Label("Clinic", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ClinicId, Model.Clinics as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Doctor", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.MedicalStaffId, Model.Doctors as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("Profile", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(model => model.ProfileId, Model.Profiles as SelectList,
+                htmlAttributes: new { @class = "form-control" })
+        </div>
+
+        @Html.Label("From", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.Begin, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+
+        @Html.Label("To", new { @class = "control-label col-md-2" })
+        <div class="col-md-10">
+            @Html.EditorFor(model => model.End, new { htmlAttributes = new { @class = "form-control" } })
+        </div>
+        <div class="col-md-10">
+            <input type="submit" value="Filter" class="btn btn-default" />
+        </div>
+    </div>
+</form>
+
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayName("Medical staff name")
+        </th>
+        <th>
+            @Html.DisplayName("Average number of patients")
+        </th>
+    </tr>
+
+    @foreach (var item in Model.MedicalStaffProductions)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalStaffName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.AvgNumOfPatients)
+            </td>
+        </tr>
+    }
+</table>
+
+Page @(Model.MedicalStaffProductions.PageCount < Model.MedicalStaffProductions.PageNumber ? 0 : Model.MedicalStaffProductions.PageNumber) of @Model.MedicalStaffProductions.PageCount
+@Html.PagedListPager(Model.MedicalStaffProductions, PageNum =>Url.Action("Request11",
+    new
+    {
+        pageNum = PageNum,
+        clinicId = Model.ClinicId,
+        begin = Model.Begin?.ToString("yyyy-MM-dd"),
+        end = Model.End?.ToString("yyyy-MM-dd"),
+        profileId = Model.ProfileId,
+        medicalStaffId = Model.MedicalStaffId,
+
+}))

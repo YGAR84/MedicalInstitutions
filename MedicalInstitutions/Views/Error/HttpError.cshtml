@@ -1,0 +1,24 @@
+﻿@{
+      ViewBag.Title = "Index";
+      Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Oops</h2>
+<p>Another http error</p>
+
+<img src="~/images/httpError.jpg" style="margin-top:20px; margin-bottom:20px;">
+
+    @if (Model != null @*&& HttpContext.Current.IsDebuggingEnabled*@)
+    {
+        string controllerName = @Model.ControllerName.ToString();
+        <div>
+            @Html.ActionLink("Back", "Index", controllerName)
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.ActionLink("Back", "Index", "Home")
+        </div>
+    }

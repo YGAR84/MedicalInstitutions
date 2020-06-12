@@ -1,0 +1,27 @@
+﻿@{
+      ViewBag.Title = "Index";
+      Layout = "~/Views/Shared/_Layout.cshtml";
+
+}
+
+<h2>Oops</h2>
+<p>An unexpected error occurred while performing the operation. Notify administrator</p>
+
+<img src="~/images/error.jpg" style="margin-top:20px; margin-bottom:20px;">
+
+    @if (Model != null @*&& HttpContext.Current.IsDebuggingEnabled*@)
+    {
+        <div>
+            <p>@Model.Exception.Message</p>
+        </div>
+        string controllerName = @Model.ControllerName.ToString();
+        <div>
+            @Html.ActionLink("Back", "Index", controllerName)
+        </div>
+    }
+    else
+    {
+        <div>
+            @Html.ActionLink("Back", "Index", "Home")
+        </div>
+    }

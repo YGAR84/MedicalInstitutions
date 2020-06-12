@@ -1,0 +1,58 @@
+﻿@model MedicalInstitutions.Models.Staffs.MedicalStaffs.MedicalStaffProfile
+
+@{
+    ViewBag.Title = "Medical staff profile";
+}
+
+<h2>Medical staff profile details</h2>
+
+<div>
+    <h4>Medical staff profile</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.ProfileName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.ProfileName)
+        </dd>
+        
+        <dt>
+            @Html.DisplayNameFor(model => model.DiseaseGroup.Name)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.DiseaseGroup.Name)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.IsSurgeon)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.IsSurgeon)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.SalaryAddition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.SalaryAddition)
+        </dd>
+
+        <dt>
+            @Html.DisplayNameFor(model => model.VacationAddition)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.VacationAddition)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.Id }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>

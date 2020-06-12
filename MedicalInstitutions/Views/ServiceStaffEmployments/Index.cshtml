@@ -1,0 +1,68 @@
+﻿@model PagedList.IPagedList<MedicalInstitutions.Models.Staffs.ServiceStaffs.ServiceStaffEmployment>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Service staff employment";
+}
+
+<h2>Service staff employments</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().ServiceStaffId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().MedicalInstitutionId)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Salary)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().Vacation)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().EmploymentDate)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DischargeDate)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.ServiceStaff.ServiceStaffName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.MedicalInstitution.MedicalInstitutionName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Salary)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Vacation)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.EmploymentDateFormat)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DischargeDateFormat)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, PageNum =>Url.Action("Index",
+    new { PageNum }))

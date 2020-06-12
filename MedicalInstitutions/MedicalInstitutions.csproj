@@ -1,0 +1,752 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{05DBFCD1-307B-4272-B9E1-1ED3BA558F88}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>MedicalInstitutions</RootNamespace>
+    <AssemblyName>MedicalInstitutions</AssemblyName>
+    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <MvcBuildViews>false</MvcBuildViews>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="FluentValidation, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.8.6.1\lib\net45\FluentValidation.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.Mvc, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.Mvc5.8.6.1\lib\net45\FluentValidation.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="FluentValidation.ValidatorAttribute, Version=8.0.0.0, Culture=neutral, PublicKeyToken=7de548da2fbae0f0, processorArchitecture=MSIL">
+      <HintPath>..\packages\FluentValidation.ValidatorAttribute.8.6.1\lib\net45\FluentValidation.ValidatorAttribute.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.1\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="Microsoft.Extensions.Configuration, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Abstractions.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Binder, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Configuration.Binder.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Configuration.Binder.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.3.1.4\lib\net461\Microsoft.Extensions.DependencyInjection.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.DependencyInjection.Abstractions, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.DependencyInjection.Abstractions.3.1.4\lib\netstandard2.0\Microsoft.Extensions.DependencyInjection.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Logging.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Logging.Abstractions, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Logging.Abstractions.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Logging.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Options, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Options.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Options.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=3.1.4.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\packages\Microsoft.Extensions.Primitives.3.1.4\lib\netstandard2.0\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList, Version=1.17.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.1.17.0.0\lib\net40\PagedList.dll</HintPath>
+    </Reference>
+    <Reference Include="PagedList.Mvc, Version=4.5.0.0, Culture=neutral, PublicKeyToken=abbb863e9397c5e1, processorArchitecture=MSIL">
+      <HintPath>..\packages\PagedList.Mvc.4.5.0.0\lib\net40\PagedList.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.2.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Buffers.4.4.0\lib\netstandard2.0\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ComponentModel.Annotations, Version=4.2.1.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.ComponentModel.Annotations.4.7.0\lib\net461\System.ComponentModel.Annotations.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Data" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Memory.4.5.2\lib\netstandard2.0\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.3.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Numerics.Vectors.4.4.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=4.0.6.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Runtime.CompilerServices.Unsafe.4.7.1\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Threading.Tasks.Extensions, Version=4.2.0.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\packages\System.Threading.Tasks.Extensions.4.5.4\lib\net461\System.Threading.Tasks.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Web.Abstractions" />
+    <Reference Include="System.Web.Routing" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="Microsoft.Web.Infrastructure, Version=1.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.Web.Infrastructure.1.0.0.0\lib\net40\Microsoft.Web.Infrastructure.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http">
+    </Reference>
+    <Reference Include="System.Net.Http.WebRequest">
+    </Reference>
+    <Reference Include="System.Web.Helpers, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.Helpers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Mvc, Version=5.2.4.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Mvc.5.2.4\lib\net45\System.Web.Mvc.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Optimization">
+      <HintPath>..\packages\Microsoft.AspNet.Web.Optimization.1.1.3\lib\net40\System.Web.Optimization.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.Razor.3.2.4\lib\net45\System.Web.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Deployment, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Deployment.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web.WebPages.Razor, Version=3.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
+      <Private>True</Private>
+      <HintPath>..\packages\Microsoft.AspNet.WebPages.3.2.4\lib\net45\System.Web.WebPages.Razor.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>..\packages\Newtonsoft.Json.11.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="WebGrease">
+      <Private>True</Private>
+      <HintPath>..\packages\WebGrease.1.6.0\lib\WebGrease.dll</HintPath>
+    </Reference>
+    <Reference Include="Antlr3.Runtime">
+      <Private>True</Private>
+      <HintPath>..\packages\Antlr.3.5.0.2\lib\Antlr3.Runtime.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="EntityFramework">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer">
+      <HintPath>..\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Core">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Core.2.2.2\lib\net45\Microsoft.AspNet.Identity.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.Owin">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.Owin.2.2.2\lib\net45\Microsoft.AspNet.Identity.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.Identity.EntityFramework">
+      <HintPath>..\packages\Microsoft.AspNet.Identity.EntityFramework.2.2.2\lib\net45\Microsoft.AspNet.Identity.EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="Owin">
+      <HintPath>..\packages\Owin.1.0\lib\net40\Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin">
+      <HintPath>..\packages\Microsoft.Owin.4.0.0\lib\net451\Microsoft.Owin.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Host.SystemWeb">
+      <HintPath>..\packages\Microsoft.Owin.Host.SystemWeb.4.0.0\lib\net451\Microsoft.Owin.Host.SystemWeb.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security">
+      <HintPath>..\packages\Microsoft.Owin.Security.4.0.0\lib\net451\Microsoft.Owin.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Facebook.4.0.0\lib\net451\Microsoft.Owin.Security.Facebook.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Cookies">
+      <HintPath>..\packages\Microsoft.Owin.Security.Cookies.4.0.0\lib\net451\Microsoft.Owin.Security.Cookies.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Google">
+      <HintPath>..\packages\Microsoft.Owin.Security.Google.4.0.0\lib\net451\Microsoft.Owin.Security.Google.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.Twitter">
+      <HintPath>..\packages\Microsoft.Owin.Security.Twitter.4.0.0\lib\net451\Microsoft.Owin.Security.Twitter.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.MicrosoftAccount">
+      <HintPath>..\packages\Microsoft.Owin.Security.MicrosoftAccount.4.0.0\lib\net451\Microsoft.Owin.Security.MicrosoftAccount.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Owin.Security.OAuth">
+      <HintPath>..\packages\Microsoft.Owin.Security.OAuth.4.0.0\lib\net451\Microsoft.Owin.Security.OAuth.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Diagnostics.DiagnosticSource">
+      <HintPath>..\packages\System.Diagnostics.DiagnosticSource.4.4.1\lib\net46\System.Diagnostics.DiagnosticSource.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.AspNet.TelemetryCorrelation">
+      <HintPath>..\packages\Microsoft.AspNet.TelemetryCorrelation.1.0.0\lib\net45\Microsoft.AspNet.TelemetryCorrelation.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="App_Start\BundleConfig.cs" />
+    <Compile Include="App_Start\FilterConfig.cs" />
+    <Compile Include="App_Start\IdentityConfig.cs" />
+    <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="App_Start\Startup.Auth.cs" />
+    <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\AnalysesController.cs" />
+    <Compile Include="Controllers\CabinetsController.cs" />
+    <Compile Include="Controllers\ClinicsController.cs" />
+    <Compile Include="Controllers\ClinicVisitsController.cs" />
+    <Compile Include="Controllers\DiseaseGroupsController.cs" />
+    <Compile Include="Controllers\DiseasesController.cs" />
+    <Compile Include="Controllers\ErrorController.cs" />
+    <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\HospitalBuildingsController.cs" />
+    <Compile Include="Controllers\HospitalDepartmentsController.cs" />
+    <Compile Include="Controllers\HospitalsController.cs" />
+    <Compile Include="Controllers\HospitalVisitsController.cs" />
+    <Compile Include="Controllers\LaboratoriesController.cs" />
+    <Compile Include="Controllers\LaboratoryContractsController.cs" />
+    <Compile Include="Controllers\LaboratorySpecializationsController.cs" />
+    <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\MedicalStaffEmploymentsController.cs" />
+    <Compile Include="Controllers\MedicalStaffProfilesController.cs" />
+    <Compile Include="Controllers\MedicalStaffsController.cs" />
+    <Compile Include="Controllers\OperationsController.cs" />
+    <Compile Include="Controllers\PatientsController.cs" />
+    <Compile Include="Controllers\RawQueryControlles.cs" />
+    <Compile Include="Controllers\ServiceStaffEmploymentsController.cs" />
+    <Compile Include="Controllers\ServiceStaffsController.cs" />
+    <Compile Include="Controllers\ServiceStaffSpecialtiesController.cs" />
+    <Compile Include="Controllers\UserRoleManageController.cs" />
+    <Compile Include="Controllers\WardsController.cs" />
+    <Compile Include="Extensions\RawQueryHelper.cs" />
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005311450553_InitialCreate.cs" />
+    <Compile Include="Migrations\202005311450553_InitialCreate.Designer.cs">
+      <DependentUpon>202005311450553_InitialCreate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005311453236_Initial.cs" />
+    <Compile Include="Migrations\202005311453236_Initial.Designer.cs">
+      <DependentUpon>202005311453236_Initial.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005311536241_Initial1.cs" />
+    <Compile Include="Migrations\202005311536241_Initial1.Designer.cs">
+      <DependentUpon>202005311536241_Initial1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202005311943589_migration1.cs" />
+    <Compile Include="Migrations\202005311943589_migration1.Designer.cs">
+      <DependentUpon>202005311943589_migration1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006010459557_AddNewAttributes.cs" />
+    <Compile Include="Migrations\202006010459557_AddNewAttributes.Designer.cs">
+      <DependentUpon>202006010459557_AddNewAttributes.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006010502393_ChangeLaboratorySepcializationIndex.cs" />
+    <Compile Include="Migrations\202006010502393_ChangeLaboratorySepcializationIndex.Designer.cs">
+      <DependentUpon>202006010502393_ChangeLaboratorySepcializationIndex.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006010546122_moveListsToVirtual.cs" />
+    <Compile Include="Migrations\202006010546122_moveListsToVirtual.Designer.cs">
+      <DependentUpon>202006010546122_moveListsToVirtual.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006010608188_AddModelBuilderForLabs.cs" />
+    <Compile Include="Migrations\202006010608188_AddModelBuilderForLabs.Designer.cs">
+      <DependentUpon>202006010608188_AddModelBuilderForLabs.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006011745280_AddDiseaseGroupToMedicalStaff.cs" />
+    <Compile Include="Migrations\202006011745280_AddDiseaseGroupToMedicalStaff.Designer.cs">
+      <DependentUpon>202006011745280_AddDiseaseGroupToMedicalStaff.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021052427_ChangeSchema.cs" />
+    <Compile Include="Migrations\202006021052427_ChangeSchema.Designer.cs">
+      <DependentUpon>202006021052427_ChangeSchema.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021150296_AddDischargeDate.cs" />
+    <Compile Include="Migrations\202006021150296_AddDischargeDate.Designer.cs">
+      <DependentUpon>202006021150296_AddDischargeDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021344209_AddOperationName.cs" />
+    <Compile Include="Migrations\202006021344209_AddOperationName.Designer.cs">
+      <DependentUpon>202006021344209_AddOperationName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021425223_ChangeOperationNameToOperationName.cs" />
+    <Compile Include="Migrations\202006021425223_ChangeOperationNameToOperationName.Designer.cs">
+      <DependentUpon>202006021425223_ChangeOperationNameToOperationName.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006021518415_ChangeOperationNameConstraints.cs" />
+    <Compile Include="Migrations\202006021518415_ChangeOperationNameConstraints.Designer.cs">
+      <DependentUpon>202006021518415_ChangeOperationNameConstraints.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031304372_RemoveAnalysisModel.cs" />
+    <Compile Include="Migrations\202006031304372_RemoveAnalysisModel.Designer.cs">
+      <DependentUpon>202006031304372_RemoveAnalysisModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031306327_AddNewAnalysisModel.cs" />
+    <Compile Include="Migrations\202006031306327_AddNewAnalysisModel.Designer.cs">
+      <DependentUpon>202006031306327_AddNewAnalysisModel.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031410199_MakeDischargeDateOptional.cs" />
+    <Compile Include="Migrations\202006031410199_MakeDischargeDateOptional.Designer.cs">
+      <DependentUpon>202006031410199_MakeDischargeDateOptional.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006031945389_AddUniqueConstraintsAndAddLaboratoryContracts.cs" />
+    <Compile Include="Migrations\202006031945389_AddUniqueConstraintsAndAddLaboratoryContracts.Designer.cs">
+      <DependentUpon>202006031945389_AddUniqueConstraintsAndAddLaboratoryContracts.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006050810381_AddLengthAttributeToMedicalInstitutionAdress.cs" />
+    <Compile Include="Migrations\202006050810381_AddLengthAttributeToMedicalInstitutionAdress.Designer.cs">
+      <DependentUpon>202006050810381_AddLengthAttributeToMedicalInstitutionAdress.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006050948565_AddAnalysisDate.cs" />
+    <Compile Include="Migrations\202006050948565_AddAnalysisDate.Designer.cs">
+      <DependentUpon>202006050948565_AddAnalysisDate.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202006060915170_ChagneSomeEntities.cs" />
+    <Compile Include="Migrations\202006060915170_ChagneSomeEntities.Designer.cs">
+      <DependentUpon>202006060915170_ChagneSomeEntities.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\Configuration.cs" />
+    <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Diseases\Disease.cs" />
+    <Compile Include="Models\Diseases\DiseaseGroup.cs" />
+    <Compile Include="Models\MedicalInstitutions\Clinics\Cabinet.cs" />
+    <Compile Include="Models\MedicalInstitutions\Clinics\Clinic.cs" />
+    <Compile Include="Models\MedicalInstitutions\Hospitals\Hospital.cs" />
+    <Compile Include="Models\MedicalInstitutions\Hospitals\HospitalBuilding.cs" />
+    <Compile Include="Models\MedicalInstitutions\Hospitals\HospitalDepartment.cs" />
+    <Compile Include="Models\MedicalInstitutions\Laboratories\Laboratory.cs" />
+    <Compile Include="Models\MedicalInstitutions\Laboratories\LaboratoryContract.cs" />
+    <Compile Include="Models\MedicalInstitutions\Laboratories\LaboratorySpecialization.cs" />
+    <Compile Include="Models\MedicalInstitutions\Laboratories\Аnalysis.cs" />
+    <Compile Include="Models\IdentityModels.cs" />
+    <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\MedicalInstitutionsContext.cs" />
+    <Compile Include="Models\MedicalInstitutions\MedicalInstitution.cs" />
+    <Compile Include="Models\MedicalInstitutions\Hospitals\Ward.cs" />
+    <Compile Include="Models\Patients\Visit\ClinicVisit.cs" />
+    <Compile Include="Models\Patients\Visit\HospitalVisit.cs" />
+    <Compile Include="Models\Patients\MedicalHistory.cs" />
+    <Compile Include="Models\Patients\Visit\MedicalInstitutionVisit.cs" />
+    <Compile Include="Models\Patients\Operation.cs" />
+    <Compile Include="Models\Patients\Patient.cs" />
+    <Compile Include="Models\Person.cs" />
+    <Compile Include="Models\RawQuery.cs" />
+    <Compile Include="Models\Staffs\MedicalStaffs\MedicalStaffEmployment.cs" />
+    <Compile Include="Models\Staffs\MedicalStaffs\MedicalStaffProfile.cs" />
+    <Compile Include="Models\Staffs\ServiceStaffs\ServiceStaffEmployment.cs" />
+    <Compile Include="Models\Staffs\ServiceStaffs\ServiceStaffSpecialty.cs" />
+    <Compile Include="Models\Staffs\StaffEmployment.cs" />
+    <Compile Include="Models\Staffs\MedicalStaffs\Surgeons\Dentist.cs" />
+    <Compile Include="Models\Staffs\MedicalStaffs\Surgeons\GeneralSurgeon.cs" />
+    <Compile Include="Models\Staffs\MedicalStaffs\Surgeons\Gynecologist.cs" />
+    <Compile Include="Models\Staffs\MedicalStaffs\MedicalStaff.cs" />
+    <Compile Include="Models\Staffs\MedicalStaffs\Surgeons\Surgeon.cs" />
+    <Compile Include="Models\Staffs\ServiceStaffs\ServiceStaff.cs" />
+    <Compile Include="Models\Staffs\Staff.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Startup.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Content\bootstrap-theme.css" />
+    <Content Include="Content\bootstrap-theme.min.css" />
+    <Content Include="Content\bootstrap.css" />
+    <Content Include="Content\bootstrap.min.css" />
+    <Content Include="Content\PagedList.css" />
+    <Compile Include="Controllers\RequestsController.cs" />
+    <Content Include="favicon.ico" />
+    <Content Include="fonts\glyphicons-halflings-regular.svg" />
+    <Content Include="Global.asax" />
+    <Content Include="Content\Site.css" />
+    <Content Include="Scripts\bootstrap.js" />
+    <Content Include="Scripts\bootstrap.min.js" />
+    <None Include="Scripts\jquery-3.3.1.intellisense.js" />
+    <Content Include="Scripts\jquery-3.3.1.js" />
+    <Content Include="Scripts\jquery-3.3.1.min.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.js" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
+    <Content Include="Scripts\modernizr-2.8.3.js" />
+    <Content Include="Web.config">
+      <SubType>Designer</SubType>
+    </Content>
+    <Content Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </Content>
+    <Content Include="Views\Web.config" />
+    <Content Include="Views\_ViewStart.cshtml" />
+    <Content Include="Views\Shared\Error.cshtml" />
+    <Content Include="Views\Shared\_Layout.cshtml" />
+    <Content Include="Views\Home\About.cshtml" />
+    <Content Include="Views\Home\Contact.cshtml" />
+    <Content Include="Views\Home\Index.cshtml" />
+    <Content Include="Views\Account\_ExternalLoginsListPartial.cshtml" />
+    <Content Include="Views\Account\ConfirmEmail.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\Account\ForgotPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\Login.cshtml" />
+    <Content Include="Views\Account\Register.cshtml" />
+    <Content Include="Views\Account\ResetPassword.cshtml" />
+    <Content Include="Views\Account\ResetPasswordConfirmation.cshtml" />
+    <Content Include="Views\Account\SendCode.cshtml" />
+    <Content Include="Views\Account\VerifyCode.cshtml" />
+    <Content Include="Views\Shared\Lockout.cshtml" />
+    <Content Include="Views\Shared\_LoginPartial.cshtml" />
+    <Content Include="Views\ChangePassword.cshtml" />
+    <Content Include="Views\Index.cshtml" />
+    <Content Include="Views\ManageLogins.cshtml" />
+    <Content Include="Views\SetPassword.cshtml" />
+    <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\Index.cshtml" />
+    <Content Include="Views\Manage\SetPassword.cshtml" />
+    <Content Include="Views\Cabinets\Create.cshtml" />
+    <Content Include="Views\Cabinets\Delete.cshtml" />
+    <Content Include="Views\Cabinets\Details.cshtml" />
+    <Content Include="Views\Cabinets\Edit.cshtml" />
+    <Content Include="Views\Cabinets\Index.cshtml" />
+    <Content Include="Views\Clinics\Create.cshtml" />
+    <Content Include="Views\Clinics\Delete.cshtml" />
+    <Content Include="Views\Clinics\Details.cshtml" />
+    <Content Include="Views\Clinics\Edit.cshtml" />
+    <Content Include="Views\Clinics\Index.cshtml" />
+    <Content Include="Views\ClinicVisits\Create.cshtml" />
+    <Content Include="Views\ClinicVisits\Delete.cshtml" />
+    <Content Include="Views\ClinicVisits\Details.cshtml" />
+    <Content Include="Views\ClinicVisits\Edit.cshtml" />
+    <Content Include="Views\ClinicVisits\Index.cshtml" />
+    <Content Include="Views\Diseases\Create.cshtml" />
+    <Content Include="Views\Diseases\Delete.cshtml" />
+    <Content Include="Views\Diseases\Details.cshtml" />
+    <Content Include="Views\Diseases\Edit.cshtml" />
+    <Content Include="Views\Diseases\Index.cshtml" />
+    <Content Include="Views\DiseaseGroups\Create.cshtml" />
+    <Content Include="Views\DiseaseGroups\Delete.cshtml" />
+    <Content Include="Views\DiseaseGroups\Details.cshtml" />
+    <Content Include="Views\DiseaseGroups\Edit.cshtml" />
+    <Content Include="Views\DiseaseGroups\Index.cshtml" />
+    <Content Include="Views\Hospitals\Create.cshtml" />
+    <Content Include="Views\Hospitals\Delete.cshtml" />
+    <Content Include="Views\Hospitals\Details.cshtml" />
+    <Content Include="Views\Hospitals\Edit.cshtml" />
+    <Content Include="Views\Hospitals\Index.cshtml" />
+    <Content Include="Views\HospitalBuildings\Create.cshtml" />
+    <Content Include="Views\HospitalBuildings\Delete.cshtml" />
+    <Content Include="Views\HospitalBuildings\Details.cshtml" />
+    <Content Include="Views\HospitalBuildings\Edit.cshtml" />
+    <Content Include="Views\HospitalBuildings\Index.cshtml" />
+    <Content Include="Views\HospitalDepartments\Create.cshtml" />
+    <Content Include="Views\HospitalDepartments\Delete.cshtml" />
+    <Content Include="Views\HospitalDepartments\Details.cshtml" />
+    <Content Include="Views\HospitalDepartments\Edit.cshtml" />
+    <Content Include="Views\HospitalDepartments\Index.cshtml" />
+    <Content Include="Views\HospitalVisits\Create.cshtml" />
+    <Content Include="Views\HospitalVisits\Delete.cshtml" />
+    <Content Include="Views\HospitalVisits\Details.cshtml" />
+    <Content Include="Views\HospitalVisits\Edit.cshtml" />
+    <Content Include="Views\HospitalVisits\Index.cshtml" />
+    <Content Include="Views\Laboratories\Create.cshtml" />
+    <Content Include="Views\Laboratories\Delete.cshtml" />
+    <Content Include="Views\Laboratories\Details.cshtml" />
+    <Content Include="Views\Laboratories\Edit.cshtml" />
+    <Content Include="Views\Laboratories\Index.cshtml" />
+    <Content Include="Views\LaboratorySpecializations\Create.cshtml" />
+    <Content Include="Views\LaboratorySpecializations\Delete.cshtml" />
+    <Content Include="Views\LaboratorySpecializations\Details.cshtml" />
+    <Content Include="Views\LaboratorySpecializations\Edit.cshtml" />
+    <Content Include="Views\LaboratorySpecializations\Index.cshtml" />
+    <Content Include="Views\Patients\Create.cshtml" />
+    <Content Include="Views\Patients\Delete.cshtml" />
+    <Content Include="Views\Patients\Details.cshtml" />
+    <Content Include="Views\Patients\Edit.cshtml" />
+    <Content Include="Views\Patients\Index.cshtml" />
+    <Content Include="Views\Wards\Create.cshtml" />
+    <Content Include="Views\Wards\Delete.cshtml" />
+    <Content Include="Views\Wards\Details.cshtml" />
+    <Content Include="Views\Wards\Edit.cshtml" />
+    <Content Include="Views\Wards\Index.cshtml" />
+    <Content Include="Views\MedicalStaffs\Create.cshtml" />
+    <Content Include="Views\MedicalStaffs\Delete.cshtml" />
+    <Content Include="Views\MedicalStaffs\Details.cshtml" />
+    <Content Include="Views\MedicalStaffs\Edit.cshtml" />
+    <Content Include="Views\MedicalStaffs\Index.cshtml" />
+    <Content Include="Views\MedicalStaffProfiles\Create.cshtml" />
+    <Content Include="Views\MedicalStaffProfiles\Delete.cshtml" />
+    <Content Include="Views\MedicalStaffProfiles\Details.cshtml" />
+    <Content Include="Views\MedicalStaffProfiles\Edit.cshtml" />
+    <Content Include="Views\MedicalStaffProfiles\Index.cshtml" />
+    <Content Include="Views\ServiceStaffSpecialties\Create.cshtml" />
+    <Content Include="Views\ServiceStaffSpecialties\Delete.cshtml" />
+    <Content Include="Views\ServiceStaffSpecialties\Details.cshtml" />
+    <Content Include="Views\ServiceStaffSpecialties\Edit.cshtml" />
+    <Content Include="Views\ServiceStaffSpecialties\Index.cshtml" />
+    <Content Include="Views\ServiceStaffs\Create.cshtml" />
+    <Content Include="Views\ServiceStaffs\Delete.cshtml" />
+    <Content Include="Views\ServiceStaffs\Details.cshtml" />
+    <Content Include="Views\ServiceStaffs\Edit.cshtml" />
+    <Content Include="Views\ServiceStaffs\Index.cshtml" />
+    <Content Include="Views\Operations\Create.cshtml" />
+    <Content Include="Views\Operations\Delete.cshtml" />
+    <Content Include="Views\Operations\Details.cshtml" />
+    <Content Include="Views\Operations\Edit.cshtml" />
+    <Content Include="Views\Operations\Index.cshtml" />
+    <Content Include="Views\Analyzes\Create.cshtml" />
+    <Content Include="Views\Analyzes\Delete.cshtml" />
+    <Content Include="Views\Analyzes\Details.cshtml" />
+    <Content Include="Views\Analyzes\Edit.cshtml" />
+    <Content Include="Views\Analyzes\Index.cshtml" />
+    <Content Include="Views\MedicalStaffEmployments\Create.cshtml" />
+    <Content Include="Views\MedicalStaffEmployments\Delete.cshtml" />
+    <Content Include="Views\MedicalStaffEmployments\Details.cshtml" />
+    <Content Include="Views\MedicalStaffEmployments\Edit.cshtml" />
+    <Content Include="Views\MedicalStaffEmployments\Index.cshtml" />
+    <Content Include="Views\ServiceStaffEmployments\Create.cshtml" />
+    <Content Include="Views\ServiceStaffEmployments\Delete.cshtml" />
+    <Content Include="Views\ServiceStaffEmployments\Details.cshtml" />
+    <Content Include="Views\ServiceStaffEmployments\Edit.cshtml" />
+    <Content Include="Views\ServiceStaffEmployments\Index.cshtml" />
+    <Content Include="Views\LaboratoryContracts\Create.cshtml" />
+    <Content Include="Views\LaboratoryContracts\Delete.cshtml" />
+    <Content Include="Views\LaboratoryContracts\Details.cshtml" />
+    <Content Include="Views\LaboratoryContracts\Edit.cshtml" />
+    <Content Include="Views\LaboratoryContracts\Index.cshtml" />
+    <Content Include="Views\Requests\Request1.cshtml" />
+    <Content Include="Views\Requests\Request2.cshtml" />
+    <Content Include="Views\Requests\Request3.cshtml" />
+    <Content Include="Views\Requests\Request4.cshtml" />
+    <Content Include="Views\Requests\Request14.cshtml" />
+    <Content Include="Views\Requests\Request13.cshtml" />
+    <Content Include="Views\Requests\Request12.cshtml" />
+    <Content Include="Views\Requests\Request11.cshtml" />
+    <Content Include="Views\Requests\Request10.cshtml" />
+    <Content Include="Views\Requests\Request9.cshtml" />
+    <Content Include="Views\Requests\Request8.cshtml" />
+    <Content Include="Views\Requests\Request7.cshtml" />
+    <Content Include="Views\Requests\Request6.cshtml" />
+    <Content Include="Views\Requests\Request5.cshtml" />
+    <Content Include="Views\RawQuery\Index.cshtml" />
+    <Content Include="Views\UserRoleManage\Index.cshtml" />
+    <Content Include="Views\UserRoleManage\Edit.cshtml" />
+    <Content Include="Views\UserRoleManage\Create.cshtml" />
+    <Content Include="Views\UserRoleManage\Delete.cshtml" />
+    <Content Include="Views\UserRoleManage\Details.cshtml" />
+    <Content Include="Views\Error\Index.cshtml" />
+    <Content Include="Views\Error\NotFound.cshtml" />
+    <Content Include="Views\Error\AccessDenied.cshtml" />
+    <Content Include="Views\Error\HttpError.cshtml" />
+    <Content Include="Views\UserRoleManage\ChangeUserPassword.cshtml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Annotations\" />
+    <Folder Include="App_Data\" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="fonts\glyphicons-halflings-regular.woff2" />
+    <Content Include="fonts\glyphicons-halflings-regular.woff" />
+    <Content Include="fonts\glyphicons-halflings-regular.ttf" />
+    <Content Include="fonts\glyphicons-halflings-regular.eot" />
+    <Content Include="Content\bootstrap.min.css.map" />
+    <Content Include="Content\bootstrap.css.map" />
+    <Content Include="Content\bootstrap-theme.min.css.map" />
+    <Content Include="Content\bootstrap-theme.css.map" />
+    <None Include="packages.config" />
+    <Content Include="Scripts\jquery-3.3.1.slim.min.map" />
+    <Content Include="Scripts\jquery-3.3.1.min.map" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Migrations\202005311450553_InitialCreate.resx">
+      <DependentUpon>202005311450553_InitialCreate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005311453236_Initial.resx">
+      <DependentUpon>202005311453236_Initial.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005311536241_Initial1.resx">
+      <DependentUpon>202005311536241_Initial1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202005311943589_migration1.resx">
+      <DependentUpon>202005311943589_migration1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006010459557_AddNewAttributes.resx">
+      <DependentUpon>202006010459557_AddNewAttributes.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006010502393_ChangeLaboratorySepcializationIndex.resx">
+      <DependentUpon>202006010502393_ChangeLaboratorySepcializationIndex.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006010546122_moveListsToVirtual.resx">
+      <DependentUpon>202006010546122_moveListsToVirtual.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006010608188_AddModelBuilderForLabs.resx">
+      <DependentUpon>202006010608188_AddModelBuilderForLabs.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006011745280_AddDiseaseGroupToMedicalStaff.resx">
+      <DependentUpon>202006011745280_AddDiseaseGroupToMedicalStaff.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021052427_ChangeSchema.resx">
+      <DependentUpon>202006021052427_ChangeSchema.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021150296_AddDischargeDate.resx">
+      <DependentUpon>202006021150296_AddDischargeDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021344209_AddOperationName.resx">
+      <DependentUpon>202006021344209_AddOperationName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021425223_ChangeOperationNameToOperationName.resx">
+      <DependentUpon>202006021425223_ChangeOperationNameToOperationName.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006021518415_ChangeOperationNameConstraints.resx">
+      <DependentUpon>202006021518415_ChangeOperationNameConstraints.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031304372_RemoveAnalysisModel.resx">
+      <DependentUpon>202006031304372_RemoveAnalysisModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031306327_AddNewAnalysisModel.resx">
+      <DependentUpon>202006031306327_AddNewAnalysisModel.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031410199_MakeDischargeDateOptional.resx">
+      <DependentUpon>202006031410199_MakeDischargeDateOptional.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006031945389_AddUniqueConstraintsAndAddLaboratoryContracts.resx">
+      <DependentUpon>202006031945389_AddUniqueConstraintsAndAddLaboratoryContracts.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006050810381_AddLengthAttributeToMedicalInstitutionAdress.resx">
+      <DependentUpon>202006050810381_AddLengthAttributeToMedicalInstitutionAdress.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006050948565_AddAnalysisDate.resx">
+      <DependentUpon>202006050948565_AddAnalysisDate.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202006060915170_ChagneSomeEntities.resx">
+      <DependentUpon>202006060915170_ChagneSomeEntities.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x64</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <DebugType>full</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x86'">
+    <DebugSymbols>true</DebugSymbols>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <Optimize>true</Optimize>
+    <DebugType>pdbonly</DebugType>
+    <PlatformTarget>x86</PlatformTarget>
+    <ErrorReport>prompt</ErrorReport>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <Target Name="MvcBuildViews" AfterTargets="AfterBuild" Condition="'$(MvcBuildViews)'=='true'">
+    <AspNetCompiler VirtualPath="temp" PhysicalPath="$(WebProjectOutputDir)" />
+  </Target>
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>0</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:53012/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>Данный проект ссылается на пакеты NuGet, отсутствующие на этом компьютере. Используйте восстановление пакетов NuGet, чтобы скачать их.  Дополнительную информацию см. по адресу: http://go.microsoft.com/fwlink/?LinkID=322105. Отсутствует следующий файл: {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.0\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it.
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target> -->
+</Project>

@@ -1,0 +1,45 @@
+﻿@model PagedList.IPagedList<MedicalInstitutions.Models.MedicalInstitutions.Hospitals.HospitalDepartment>
+@using PagedList.Mvc
+@{
+    ViewBag.Title = "Hospital department";
+}
+
+<h2>Hospital departments</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+<table class="table">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.First().HospitalBuilding.HospitalBuildingName)
+        </th>
+        <th>
+            @Html.DisplayNameFor(model => model.First().DiseaseGroup.Name)
+        </th>
+
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.HospitalBuilding.HospitalBuildingName)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.DiseaseGroup.Name)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.Id }) |
+                @Html.ActionLink("Details", "Details", new { id = item.Id }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.Id })
+            </td>
+        </tr>
+    }
+
+</table>
+
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, PageNum =>Url.Action("Index",
+    new { PageNum }))
